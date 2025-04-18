@@ -23,11 +23,11 @@ public class Prenotazione {
     @Column(length = 500)
     private String note;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "viaggio_id")
     private Viaggio viaggio;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dipendente_id")
     private Dipendente dipendente;
 }

@@ -6,6 +6,7 @@ import it.epicode.ProgettoSettimanaleJava_S6_L5.viaggi.Viaggio;
 import it.epicode.ProgettoSettimanaleJava_S6_L5.viaggi.ViaggioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
+@Order(3)
 public class PrenotazioneRunner implements CommandLineRunner {
     @Autowired
     private PrenotazioneRepository prenotazioneRepository;

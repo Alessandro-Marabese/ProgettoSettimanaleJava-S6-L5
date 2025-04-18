@@ -5,12 +5,14 @@ import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.Dipendente;
 import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.DipendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
+@Order(2)
 public class ViaggioRunner implements CommandLineRunner {
     @Autowired
     private ViaggioRepository viaggioRepository;

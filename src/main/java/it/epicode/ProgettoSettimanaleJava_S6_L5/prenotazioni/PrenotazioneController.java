@@ -1,6 +1,7 @@
 package it.epicode.ProgettoSettimanaleJava_S6_L5.prenotazioni;
 
 import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.Dipendente;
+import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.DipendenteRepository;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class PrenotazioneController {
     @Autowired
     private PrenotazioneService prenotazioneService;
+    @Autowired
+    private DipendenteRepository dipendenteRepository;
 
     @GetMapping("/{id}")
     public PrenotazioneResponse findById(@PathVariable Long id) {
@@ -38,7 +41,9 @@ public class PrenotazioneController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PrenotazioneResponse save(@RequestBody @Valid PrenotazioneRequest request, Dipendente dipendente) {
+    public PrenotazioneResponse save(@RequestBody @Valid PrenotazioneRequest request) {
+        Dipendente dipendente = dipendenteRepository.findById(request.getDipendenteId())
+                .orElseThrow(() -> new RuntimeException("Dipendente non trovato"));
         return prenotazioneService.save(request, dipendente);
     }
 }
