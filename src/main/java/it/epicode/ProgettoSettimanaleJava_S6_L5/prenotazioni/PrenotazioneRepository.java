@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Long> {
     Prenotazione findByDipendenteAndDataRichiesta(Dipendente dipendente, String dataRichiesta);
+
+    Prenotazione findByDipendente(Dipendente dipendente);
 }

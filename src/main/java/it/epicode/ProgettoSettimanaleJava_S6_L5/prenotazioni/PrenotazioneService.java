@@ -52,14 +52,29 @@ public class PrenotazioneService {
 
     public PrenotazioneResponse fromEntity(Prenotazione prenotazione) {
         PrenotazioneResponse response = new PrenotazioneResponse();
-        BeanUtils.copyProperties(prenotazione, response);
+        response.setId(prenotazione.getId());
+        response.setDataRichiesta(prenotazione.getDataRichiesta());
+        response.setNote(prenotazione.getNote());
+
+        if (prenotazione.getDipendente() != null) {
+            response.setDipendenteId(prenotazione.getDipendente().getId());
+        }
+
+        if (prenotazione.getViaggio() != null) {
+            response.setViaggioId(prenotazione.getViaggio().getId());
+        }
         return response;
     }
 
     public PrenotazioneResponse save(@Valid PrenotazioneRequest request, Dipendente dipendente) {
-        Prenotazione prenotazioneEsistente = prenotazioneRepository.findByDipendenteAndDataRichiesta(dipendente, request.getDataRichiesta());
-        if(prenotazioneEsistente != null) {
+        Prenotazione prenotazioneEsistentePerQuellaData = prenotazioneRepository.findByDipendenteAndDataRichiesta(dipendente, request.getDataRichiesta());
+        if(prenotazioneEsistentePerQuellaData != null) {
             throw new RuntimeException("Il dipendente ha già un'altra prenotazione per quella data.");
+        }
+
+        Prenotazione prenotazioneEsistentePerDipendente = prenotazioneRepository.findByDipendente(dipendente);
+        if(prenotazioneEsistentePerDipendente != null) {
+            throw new RuntimeException("Il dipendente ha già una prenotazione.");
         }
 
         dipendente = dipendenteRepository.findById(request.getDipendenteId())
