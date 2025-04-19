@@ -3,7 +3,6 @@ package it.epicode.ProgettoSettimanaleJava_S6_L5.viaggi;
 import it.epicode.ProgettoSettimanaleJava_S6_L5.common.CommonResponse;
 import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.Dipendente;
 import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.DipendenteRepository;
-import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.DipendenteResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
-import java.util.List;
 
 @Service
 @Validated

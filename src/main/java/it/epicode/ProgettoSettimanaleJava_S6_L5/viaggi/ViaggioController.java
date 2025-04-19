@@ -1,7 +1,6 @@
 package it.epicode.ProgettoSettimanaleJava_S6_L5.viaggi;
 
 import it.epicode.ProgettoSettimanaleJava_S6_L5.common.CommonResponse;
-import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.DipendenteResponse;
 import it.epicode.ProgettoSettimanaleJava_S6_L5.dipendenti.DipendenteService;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
