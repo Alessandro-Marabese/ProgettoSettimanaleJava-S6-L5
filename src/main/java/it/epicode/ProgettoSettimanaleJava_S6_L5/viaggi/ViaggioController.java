@@ -51,8 +51,8 @@ public class ViaggioController {
         return viaggioService.updateStato(id, request);
     }
 
-    @PutMapping("/viaggio/{idDipendente}/{idViaggio}")
-    public ViaggioResponse assegnaDipendenteViaggio(@PathVariable Long idDipendente, @PathVariable Long idViaggio) {
-        return viaggioService.assegnaDipendenteViaggio(idDipendente, idViaggio);
+    @PutMapping("/dipendente/{idDipendente}/viaggio/{idViaggio}")
+    public ViaggioResponse assegnaOSostituisciDipendenteViaggio(@PathVariable Long idDipendente, @PathVariable Long idViaggio) {
+        return viaggioService.assegnaOSostituisciDipendenteViaggio(idViaggio, idDipendente);
     }
 }

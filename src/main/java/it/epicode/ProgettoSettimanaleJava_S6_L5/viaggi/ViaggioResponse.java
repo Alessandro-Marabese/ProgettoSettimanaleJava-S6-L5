@@ -14,4 +14,5 @@ public class ViaggioResponse {
     private String destinazione;
     private String dataPartenza;
     private StatoViaggio statoViaggio;
+    private Long dipendenteId;
 }

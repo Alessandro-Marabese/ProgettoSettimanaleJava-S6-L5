@@ -58,6 +58,9 @@ public class ViaggioService {
     public ViaggioResponse fromEntity(Viaggio viaggio) {
         ViaggioResponse response = new ViaggioResponse();
         BeanUtils.copyProperties(viaggio, response);
+        if (viaggio.getDipendente() != null) {
+            response.setDipendenteId(viaggio.getDipendente().getId());
+        }
         return response;
     }
 
@@ -69,16 +72,21 @@ public class ViaggioService {
         return fromEntity(viaggio);
     }
 
-    public ViaggioResponse assegnaDipendenteViaggio(Long idDipendente, Long idViaggio) {
+    public ViaggioResponse assegnaOSostituisciDipendenteViaggio(Long idViaggio, Long idDipendente) {
         Dipendente dipendente = dipendenteRepository.findById(idDipendente)
                 .orElseThrow(() -> new RuntimeException("Dipendente non trovato"));
 
         Viaggio viaggio = viaggioRepository.findById(idViaggio)
                 .orElseThrow(() -> new RuntimeException("Viaggio non trovato"));
 
-        viaggio.setDipendente(dipendente);
-        viaggioRepository.save(viaggio);
+        Dipendente dipendenteCorrente = viaggio.getDipendente();
 
-        return fromEntity(viaggio);
+        if (dipendenteCorrente != null && dipendenteCorrente.getId().equals(idDipendente)) {
+                return fromEntity(viaggio);
+            }
+            viaggio.setDipendente(dipendente);
+            viaggioRepository.save(viaggio);
+
+            return fromEntity(viaggio);
+        }
     }
-}
